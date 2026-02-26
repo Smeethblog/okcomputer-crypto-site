@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoVault Setup Tutorial - Step by Step Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #d4ff00;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: #d4ff00;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .step {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(212, 255, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #d4ff00;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 5rem;
+            font-weight: bold;
+            color: rgba(212, 255, 0, 0.1);
+        }
+        
+        .step h2 {
+            color: #d4ff00;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 255, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .step-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .instructions h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .instructions ol, .instructions ul {
+            padding-left: 25px;
+        }
+        
+        .instructions li {
+            margin-bottom: 12px;
+            color: #ccc;
+        }
+        
+        .instructions li strong {
+            color: #d4ff00;
+        }
+        
+        .code-block {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            color: #d4ff00;
+            overflow-x: auto;
+        }
+        
+        .tip {
+            background: rgba(212, 255, 0, 0.1);
+            border-left: 4px solid #d4ff00;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .tip-title {
+            color: #d4ff00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .warning-title {
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: #d4ff00;
+            color: #000;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #e0ff33;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #d4ff00;
+            border: 2px solid #d4ff00;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 255, 0, 0.1);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #d4ff00;
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+        
+        .quick-links {
+            background: rgba(212, 255, 0, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .quick-links h3 {
+            color: #d4ff00;
+            margin-bottom: 15px;
+        }
+        
+        .quick-links a {
+            color: #888;
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+        
+        .quick-links a:hover {
+            color: #d4ff00;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                padding: 25px;
+            }
+            
+            .step-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="hero">
+        <h1>CryptoVault Setup Tutorial</h1>
+        <p>Complete step-by-step guide to running your crypto investment platform. No coding experience required!</p>
+    </div>
+    
+    <div class="container">
+        <div class="quick-links">
+            <h3>Quick Navigation</h3>
+            <a href="#step1">Step 1: Start the Backend Server</a>
+            <a href="#step2">Step 2: Start the Frontend</a>
+            <a href="#step3">Step 3: Login as Admin</a>
+            <a href="#step4">Step 4: Explore Admin Dashboard</a>
+            <a href="#step5">Step 5: Manage Users</a>
+            <a href="#step6">Step 6: Handle Withdrawals</a>
+            <a href="#step7">Step 7: Confirm Deposits</a>
+        </div>
+        
+        <!-- STEP 1 -->
+        <div class="step" id="step1">
+            <div class="step-number">01</div>
+            <h2>
+                <div class="step-icon">⚙️</div>
+                Start the Backend Server
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">The backend is the brain of your platform. It handles all data, users, and transactions.</p>
+            
+            <img src="tutorial/step1-backend.jpg" alt="Backend Server Starting" class="step-image">
+            
+            <div class="instructions">
+                <h3>What to do:</h3>
+                <ol>
+                    <li>Open a <strong>Terminal</strong> or <strong>Command Prompt</strong></li>
+                    <li>Navigate to the <strong>cryptovault-api</strong> folder:
+                        <div class="code-block">cd cryptovault-api</div>
+                    </li>
+                    <li>Start the server:
+                        <div class="code-block">npm start</div>
+                    </li>
+                    <li>You should see: <strong style="color: #d4ff00;">"Server running on port 5000"</strong></li>
+                    <li><strong>Keep this window open!</strong> Don't close it.</li>
+                </ol>
+                
+                <div class="tip">
+                    <div class="tip-title">💡 Pro Tip</div>
+                    <p>On Windows, you can double-click <strong>START.bat</strong> to start both servers automatically!</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 2 -->
+        <div class="step" id="step2">
+            <div class="step-number">02</div>
+            <h2>
+                <div class="step-icon">🌐</div>
+                Start the Frontend (Website)
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">The frontend is what users see and interact with - the visual website.</p>
+            
+            <img src="tutorial/step2-frontend.jpg" alt="Frontend Starting" class="step-image">
+            
+            <div class="instructions">
+                <h3>What to do:</h3>
+                <ol>
+                    <li>Open a <strong>NEW</strong> Terminal window (keep the first one running!)</li>
+                    <li>Navigate to the <strong>app</strong> folder:
+                        <div class="code-block">cd app</div>
+                    </li>
+                    <li>Start the frontend:
+                        <div class="code-block">npm run dev</div>
+                    </li>
+                    <li>You should see: <strong style="color: #d4ff00;">"Local: http://localhost:5173"</strong></li>
+                    <li>Open your browser and go to: <strong style="color: #d4ff00;">http://localhost:5173</strong></li>
+                </ol>
+                
+                <div class="warning">
+                    <div class="warning-title">⚠️ Important</div>
+                    <p>You need BOTH servers running at the same time. You'll have 2 terminal windows open.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 3 -->
+        <div class="step" id="step3">
+            <div class="step-number">03</div>
+            <h2>
+                <div class="step-icon">🔐</div>
+                Login as Administrator
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">Use the default admin account to access the full control panel.</p>
+            
+            <img src="tutorial/step3-login.jpg" alt="Admin Login Page" class="step-image">
+            
+            <div class="instructions">
+                <h3>Admin Credentials:</h3>
+                <div class="code-block">
+Email: admin@cryptovault.com<br>
+Password: admin123
+                </div>
+                
+                <h3>What to do:</h3>
+                <ol>
+                    <li>On the login page, click <strong>"Sign In"</strong></li>
+                    <li>Enter the admin email and password above</li>
+                    <li>Click the <strong>Login</strong> button</li>
+                    <li>You should see the Dashboard!</li>
+                </ol>
+                
+                <div class="tip">
+                    <div class="tip-title">💡 First Time Setup</div>
+                    <p>If this is your first time, the admin account is created automatically. You can change the password later in the admin panel.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 4 -->
+        <div class="step" id="step4">
+            <div class="step-number">04</div>
+            <h2>
+                <div class="step-icon">📊</div>
+                Explore the Admin Dashboard
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">Your command center - see all platform statistics at a glance.</p>
+            
+            <img src="tutorial/step4-dashboard.jpg" alt="Admin Dashboard" class="step-image">
+            
+            <div class="instructions">
+                <h3>What you'll see:</h3>
+                <ul>
+                    <li><strong>Total Users:</strong> How many people registered</li>
+                    <li><strong>Total Deposits:</strong> All money deposited by users</li>
+                    <li><strong>Total Withdrawals:</strong> All money withdrawn</li>
+                    <li><strong>Pending Requests:</strong> Withdrawals waiting for your approval</li>
+                </ul>
+                
+                <div class="tip">
+                    <div class="tip-title">💡 Navigation</div>
+                    <p>Use the tabs at the top to switch between: Overview, Users, Withdrawals, Deposits, and Investments.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 5 -->
+        <div class="step" id="step5">
+            <div class="step-number">05</div>
+            <h2>
+                <div class="step-icon">👥</div>
+                Manage Your Users
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">View all registered users, their balances, and account status.</p>
+            
+            <img src="tutorial/step5-users.jpg" alt="User Management" class="step-image">
+            
+            <div class="instructions">
+                <h3>What you can do:</h3>
+                <ol>
+                    <li>Click the <strong>"Users"</strong> tab in the Admin Panel</li>
+                    <li>See a list of all registered users</li>
+                    <li>View each user's:
+                        <ul style="margin-top: 10px;">
+                            <li>Name and Email</li>
+                            <li>Current Balance</li>
+                            <li>Account Status (Active/Pending/Inactive)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"View"</strong> on any user to see detailed information</li>
+                    <li>Use the <strong>Search</strong> box to find specific users</li>
+                </ol>
+                
+                <div class="warning">
+                    <div class="warning-title">⚠️ User Actions</div>
+                    <p>You can suspend users who violate your platform rules. Suspended users cannot login or make transactions.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 6 -->
+        <div class="step" id="step6">
+            <div class="step-number">06</div>
+            <h2>
+                <div class="step-icon">💸</div>
+                Approve or Reject Withdrawals
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">When users request to withdraw money, you need to approve it manually.</p>
+            
+            <img src="tutorial/step6-withdrawals.jpg" alt="Withdrawal Management" class="step-image">
+            
+            <div class="instructions">
+                <h3>How to process withdrawals:</h3>
+                <ol>
+                    <li>Click the <strong>"Withdrawals"</strong> tab</li>
+                    <li>You'll see a list of pending withdrawal requests</li>
+                    <li>Each request shows:
+                        <ul style="margin-top: 10px;">
+                            <li>User's name</li>
+                            <li>Amount in USD</li>
+                            <li>Amount in BTC</li>
+                            <li>Bitcoin wallet address to send to</li>
+                        </ul>
+                    </li>
+                    <li>To approve: Click the <strong style="color: #4caf50;">✓ (Approve)</strong> button</li>
+                    <li>To reject: Click the <strong style="color: #f44336;">✗ (Reject)</strong> button</li>
+                </ol>
+                
+                <div class="tip">
+                    <div class="tip-title">💡 Withdrawal Process</div>
+                    <p>After you approve, you need to manually send the Bitcoin to the user's address from your own wallet. The system tracks the request but doesn't automatically send crypto.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 7 -->
+        <div class="step" id="step7">
+            <div class="step-number">07</div>
+            <h2>
+                <div class="step-icon">💰</div>
+                Confirm User Deposits
+            </h2>
+            <p style="color: #888; margin-bottom: 20px;">When users send Bitcoin, you confirm it to credit their account.</p>
+            
+            <img src="tutorial/step7-deposits.jpg" alt="Deposit Confirmation" class="step-image">
+            
+            <div class="instructions">
+                <h3>How to confirm deposits:</h3>
+                <ol>
+                    <li>Click the <strong>"Deposits"</strong> tab</li>
+                    <li>See pending deposits waiting for confirmation</li>
+                    <li>Each deposit shows:
+                        <ul style="margin-top: 10px;">
+                            <li>Amount in USD</li>
+                            <li>Amount in BTC</li>
+                            <li>Confirmation count (needs 3 to be valid)</li>
+                        </ul>
+                    </li>
+                    <li>Verify you received the Bitcoin in your wallet</li>
+                    <li>Click <strong style="color: #4caf50;">✓ (Confirm)</strong> to credit the user's account</li>
+                </ol>
+                
+                <div class="tip">
+                    <div class="tip-title">💡 Deposit Flow</div>
+                    <p>1. User generates deposit address → 2. User sends Bitcoin → 3. You verify receipt → 4. You confirm → 5. User's balance is updated</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUMMARY -->
+        <div class="step" style="background: linear-gradient(135deg, #1a3a1a 0%, #0d3310 100%); border-color: #4caf50;">
+            <h2 style="color: #4caf50;">
+                <div class="step-icon" style="background: rgba(76, 175, 80, 0.2);">✅</div>
+                You're All Set!
+            </h2>
+            
+            <div class="instructions">
+                <h3>What you've learned:</h3>
+                <ul>
+                    <li>✅ How to start the backend and frontend servers</li>
+                    <li>✅ How to login as admin</li>
+                    <li>✅ How to navigate the admin dashboard</li>
+                    <li>✅ How to manage users</li>
+                    <li>✅ How to approve/reject withdrawals</li>
+                    <li>✅ How to confirm deposits</li>
+                </ul>
+                
+                <div class="tip" style="background: rgba(76, 175, 80, 0.1); border-left-color: #4caf50;">
+                    <div class="tip-title" style="color: #4caf50;">🚀 Next Steps</div>
+                    <p>Your platform is now running! Share the website link with clients, and they can register and start investing. All profits are calculated automatically every day.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <a href="README.md" class="btn btn-secondary">📖 Read Full Documentation</a>
+            <a href="ADMIN-GUIDE.md" class="btn btn-secondary">👑 Admin Guide</a>
+            <a href="https://dltfnh75jkf2k.ok.kimi.link" target="_blank" class="btn btn-primary">🌐 Open Website</a>
+        </div>
+    </div>
+    
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
